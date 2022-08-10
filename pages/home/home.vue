@@ -123,11 +123,10 @@
       async getFloorList() {
               const { data: res } = await uni.$http.get('/api/public/v1/home/floordata')
               if (res.meta.status !== 200) return uni.$showMsg()
-      
               // 对数据进行处理
               res.message.forEach(floor => {
                 floor.product_list.forEach(prod => {
-                  prod.url = '/subpkg/goods_list/goods_list?' + prod.navigator_url.split('?')[1]
+                  prod.url = '/subpkg/good_list/good_list?' + prod.navigator_url.split('?')[1]
                 })
               })
               this.floorList = res.message
