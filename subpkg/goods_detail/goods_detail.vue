@@ -22,7 +22,7 @@
         </view>
       </view>
       <!-- 运费 -->
-      <view class="yf">快递：免运费</view>
+      <view class="yf">快递：免运费{{cart.length}}</view>
     </view>
 
     <rich-text :nodes="goods_info.goods_introduce"></rich-text>
@@ -36,10 +36,11 @@
 
 <script>
   // import { mapState, mapMutations, mapGetters } from 'vuex'
+  import { mapState } from 'vuex'
 
   export default {
-    // computed: {
-    //   ...mapState('m_cart', []),
+     computed: {
+       ...mapState('m_cart', ['cart']),
     //   ...mapGetters('m_cart', ['total'])
     // },
     // watch: {
@@ -58,7 +59,7 @@
     //     },
     //     immediate: true
     //   }
-    // },
+     },
     data() {
       return {
         goods_info: {},
