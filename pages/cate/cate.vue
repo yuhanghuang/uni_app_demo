@@ -1,9 +1,9 @@
 <template>
   <view>
     <!-- 使用自定义的搜索组件 -->
+    <!-- 自定义的组件没有封装click事件 -->
     <!-- <my-search :bgcolor="'pink'" :radius="3"></my-search> -->
     <my-search @click="gotoSearch"></my-search>
-
     <view class="scroll-view-container">
       <!-- 左侧的滑动区域 -->
       <scroll-view class="left-scroll-view" scroll-y="true" :style="{height: wh + 'px'}">
