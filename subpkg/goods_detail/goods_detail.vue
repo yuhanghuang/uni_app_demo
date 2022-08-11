@@ -1,6 +1,6 @@
 <template>
   <view>
-    
+    qwe
   </view>
 </template>
 

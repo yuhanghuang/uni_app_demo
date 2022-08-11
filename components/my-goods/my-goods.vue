@@ -10,6 +10,7 @@
       <!-- 商品的名字 -->
       <view class="goods-name">{{goods.goods_name}}</view>
       <view class="goods-info-box">
+        <!--  |是管道符号 -->
         <view class="goods-price">￥{{goods.goods_price | tofixed}}</view>
         <uni-number-box :min="1" :value="goods.goods_count" v-if="showNum" @change="numChangeHandler"></uni-number-box>
       </view>
@@ -19,6 +20,7 @@
 
 <script>
   export default {
+    // 属性节点
     props: {
       goods: {
         type: Object,
