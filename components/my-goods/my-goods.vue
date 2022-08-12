@@ -2,6 +2,7 @@
   <view class="goods-item">
     <!-- 左侧的盒子 -->
     <view class="goods-item-left">
+      <!-- <radio checkedcolor="#C00000" v-if="showRadio" @click="radioClickHandler"></radio>  -->
       <radio :checked="goods.goods_state" color="#C00000" v-if="showRadio" @click="radioClickHandler"></radio>
       <image :src="goods.goods_small_logo || defaultPic" class="goods-pic"></image>
     </view>
@@ -48,14 +49,15 @@
       }
     },
     methods: {
-      // 这是 radio 组件的 点击事件处理函数
+      // 这是 radio 组件的 点击事件处理函数  @radio-change="radioChangeHandler"
       radioClickHandler() {
         this.$emit('radio-change', {
           goods_id: this.goods.goods_id,
+          // 点击的效果是对当前的勾选状态进行取反
           goods_state: !this.goods.goods_state
         })
       },
-      // 监听到了 NumberBox 组件数量变化的事件
+      // 监听到了 NumberBox 组件数量变化的事件  emit触发当前实例上的事件。附加参数都会传给监听器回调。
       numChangeHandler(val) {
         this.$emit('num-change', {
           goods_id: this.goods.goods_id,

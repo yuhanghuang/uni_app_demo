@@ -35,30 +35,32 @@
 </template>
 
 <script>
-  // import { mapState, mapMutations, mapGetters } from 'vuex'
-  import { mapState } from 'vuex'
+  import { mapState, mapMutations, mapGetters } from 'vuex'
+   // import { mapState } from 'vuex'
 
   export default {
      computed: {
-       ...mapState('m_cart', ['cart']),
-    //   ...mapGetters('m_cart', ['total'])
-    // },
-    // watch: {
-    //   // total(newVal) {
-    //   //   const findResult = this.options.find(x => x.text === '购物车')
-    //   //   if (findResult) {
-    //   //     findResult.info = newVal
-    //   //   }
-    //   // }
-    //   total: {
-    //     handler(newVal) {
-    //       const findResult = this.options.find(x => x.text === '购物车')
-    //       if (findResult) {
-    //         findResult.info = newVal
-    //       }
-    //     },
-    //     immediate: true
-    //   }
+       // methods: {
+         // ...mapState('m_cart', ['cart']),
+      ...mapState('m_cart', []),
+      ...mapGetters('m_cart', ['total'])
+     },
+     watch: {
+        // total(newVal) {
+        //   const findResult = this.options.find(x => x.text === '购物车')
+        //   if (findResult) {
+        //     findResult.info = newVal
+        //   }
+        // },
+       total: {
+         handler(newVal) {
+           const findResult = this.options.find(x => x.text === '购物车')
+           if (findResult) {
+             findResult.info = newVal
+           }
+         },
+         immediate: true
+       }
      },
     data() {
       return {
@@ -89,12 +91,16 @@
     },
     onLoad(options1) {
       const goods_id = options1.goods_id
+      console.log(this.options)
+      console.log(options1)
       this.options1 = options1
+      console.log("1111111")
       console.log(options1)
       this.getGoodsDetail(goods_id)
     },
     methods: {
-      // ...mapMutations('m_cart', ['addToCart']),
+      // 将m_cart中的addToCart方法映射到当前页面来使用
+      ...mapMutations('m_cart', ['addToCart']),
       async getGoodsDetail(goods_id) {
         // const { data: res } = await uni.$http.get('/api/public/v1/goods/detail', { goods_id })
         const { data: res } = await uni.$http.get('/api/public/v1/goods/detail', { goods_id : goods_id})
@@ -133,9 +139,9 @@
             goods_small_logo: this.goods_info.goods_small_logo,
             goods_state: true
           }
-
-          // 调用 addToCart 方法
+          // 调用 addToCart 方法addToCart
           this.addToCart(goods)
+          // this.addToCart(goods)
         }
       }
     }

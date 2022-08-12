@@ -47,10 +47,10 @@
 </template>
 
 <script>
-  // import badgeMix from '@/mixins/tabbar-badge.js'
+   import badgeMix from '@/mixins/tabbar-badge.js'
   
   export default {
-    // mixins: [badgeMix],
+     mixins: [badgeMix],
     data() {
       return {
         // 这是轮播图的数据列表

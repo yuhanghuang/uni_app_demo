@@ -56,8 +56,9 @@
 				this.inputValue = +val;
 			},
 			inputValue(newVal, oldVal) {
-				// if (+newVal !== +oldVal) {
+				// if (+newVal !== +oldVal) { 不保=包含小数点且新旧值不一样 可以成功转换为数据
 				if (+newVal !== +oldVal && Number(newVal) && String(newVal).indexOf('.') === -1) {
+          // /触发外界绑定的事件
 					this.$emit("change", newVal);
 				}
 			}
@@ -104,6 +105,7 @@
 			_onBlur(event) {
 				// let value = event.detail.value;
         let value = parseInt(event.detail.value);
+        // 如果输入的数据不合法就强行改为1
 				if (!value) {
 					this.inputValue = 1;
 					return;

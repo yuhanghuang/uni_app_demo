@@ -33,18 +33,38 @@
   export default {
     data() {
       return {
-        // address: {}
+         // address: {}
       };
     },
     methods: {
       ...mapMutations('m_user', ['updateAddress']),
       async chooseAddress() {
+        console.log("hhhhhhhh")
+        // uni.chooseAddress({
+        //   success(res) {
+        //     console.log(res.userName)
+        //     console.log(res.postalCode)
+        //     console.log(res.provinceName)
+        //     console.log(res.cityName)
+        //     console.log(res.countyName)
+        //     console.log(res.detailInfo)
+        //     console.log(res.nationalCode)
+        //     console.log(res.telNumber)
+        //   }
+        // })
         const [err, succ] = await uni.chooseAddress().catch(err => err)
+        console.log(succ)
+        console.log(err)
+        console.log(uni.chooseAddress().catch())
+        // console.log(err)
         if (err === null && succ.errMsg === 'chooseAddress:ok') {
           // this.address = succ
+          console.log("^^^^^^^")
+          console.log(succ)
+          // 不存储到组件中 而是存储到vuex中
           this.updateAddress(succ)
         }
-
+        // 兼容安卓设备与ios设备
         if (err && (err.errMsg === 'chooseAddress:fail auth deny' || err.errMsg === 'chooseAddress:fail authorize no response')) {
           // 通过调用这个方法，让用户重新授权
           this.reAuth()
@@ -57,7 +77,7 @@
           confirmText: '确认',
           cancelText: '取消'
         })
-
+        // 发生了错误
         if (err2) return
 
         console.log(confirmResult)
