@@ -79,8 +79,12 @@ export default {
     },
     // 购物车中已勾选商品的总数量
     checkedCount(state) {
-      return state.cart.filter(x => x.goods_state).reduce((total, item) => total += item.goods_count, 0)
+      // total是回调函数 itemm是初始的值
+      return state.cart.filter(x => x.goods_state).reduce((total1, item) => total1 += item.goods_count, 0)
+      // state.cart.filter(X=>X.goods_state).reduce((total,item)=>{return total += item.goods_state},0)
     },
+    
+    
     // 已勾选商品的总价格
     checkedGoodsAmount(state) {
       return state.cart.filter(x => x.goods_state).reduce((total, item) => total += item.goods_count * item.goods_price, 0).toFixed(2)
