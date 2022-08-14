@@ -8,7 +8,7 @@ export default {
     token: uni.getStorageSync('token') || '',
     // 用户的信息对象
     userinfo: JSON.parse(uni.getStorageSync('userinfo') || '{}'),
-    // 重定向的 Object 对象
+    // 重定向的 Object 对象 
     redirectInfo: null
   }),
 
@@ -24,6 +24,7 @@ export default {
     saveAddressToStorage(state) {
       uni.setStorageSync('address', JSON.stringify(state.address))
     },
+    // userinfo 传入的用户信息对象
     updateUserInfo(state, userinfo) {
       state.userinfo = userinfo
 

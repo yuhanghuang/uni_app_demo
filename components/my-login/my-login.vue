@@ -22,13 +22,32 @@
       ...mapMutations('m_user', ['updateUserInfo', 'updateToken', 'updateRedirectInfo']),
       // 用户授权之后，获取用户的基本信息
       getUserInfo(e) {
+        
+        uni.login({
+          provider: 'weixin',
+          success: function (loginRes) {
+            console.log("lalalalala")
+            console.log(loginRes);
+          }
+        })
+        
+        uni.getUserProfile({
+                    desc: "获取你的昵称、头像、地区及性别",
+                    success: (res) => {
+                        console.log("所有",res)
+                    },
+                    fail() {
+                        
+                    }
+                })
+        console.log("aaaaa")
         console.log(e)
 
         if (e.detail.errMsg === 'getUserInfo:fail auth deny') return uni.$showMsg('您取消了登录授权！')
 
-        console.log(e.detail.userInfo)
+        console.log("1111"+e.detail.userInfo)
         this.updateUserInfo(e.detail.userInfo)
-
+        console.log("bbbb")
         this.getToken(e.detail)
       },
       async getToken(info) {

@@ -15,6 +15,8 @@ $http.beforeRequest = function(options){
   uni.showLoading({
     title:"数据加载中"
   })
+  console.log(store)
+  console.log("请求中"+options)
 }
 
 // 响应拦截器

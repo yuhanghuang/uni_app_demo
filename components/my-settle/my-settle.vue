@@ -65,6 +65,7 @@
             goods_number: x.goods_count,
             goods_price: x.goods_price
           }))
+          // 上述操作返回的对象包括goods_id,goods_number,goods_price
         }
 
         // 1.2 发起请求创建订单
@@ -79,11 +80,13 @@
         const { data: res2 } = await uni.$http.post('/api/public/v1/my/orders/req_unifiedorder', { order_number: orderNumber })
         // 2.2 预付订单生成失败
         if (res2.meta.status !== 200) return uni.$showMsg('预付订单生成失败！')
-        // 2.3 得到订单支付相关的必要参数
+        // 2.3 得到订单支付相关的必要参数 看官网API文档
         const payInfo = res2.message.pay
 
         // 3. 发起微信支付
         // 3.1 调用 uni.requestPayment() 发起微信支付
+        console.log("xxxxxxxx")
+        console.log(payInfo)
         const [err, succ] = await uni.requestPayment(payInfo)
         // 3.2 未完成支付
         if (err) return uni.$showMsg('订单未支付！')
@@ -113,7 +116,9 @@
               url: '/pages/my/my',
               success: () => {
                 this.updateRedirectInfo({
+                  // 跳转方式
                   openType: 'switchTab',
+                  // 跳转的页面
                   from: '/pages/cart/cart'
                 })
               }
